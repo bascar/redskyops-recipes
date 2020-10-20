@@ -5,7 +5,7 @@
 This is an example of an experiment that uses [Helm](https://helm.sh) as the way to deploy [MongoDB](https://mongodb.com).
 It uses the [bitnami/mongodb helm chart](https://hub.helm.sh/charts/bitnami/mongodb) to deploy into [Kubernetes](https://kubernetes.io/).
 
-In this example, we demonstrate how to tune MongoDB using a load test. This is done by using [mongo-perf](https://github.com/mongodb/mongo-perf) to generate load and thereby simulate real world load. This experiment will highlight the CPU and Memory requests/limits that will allow for the perfomance level desired.
+In this example, we demonstrate how to tune MongoDB using [mongo-perf](https://github.com/mongodb/mongo-perf) to generate simulated load. In this experiment, we tune CPU and memory in order to optimize for requests per second and cost.
 
 ## Prerequisites
 
@@ -35,19 +35,22 @@ The resources for this tutorial can be found in the [`/mongodb`](https://github.
 : This directory contains files required to run the lightly modified mongo-perf container. There is *no need to build* the image; the folder is only included for reference.  
 
 `mongo-perf/benchrun.py`
-:The modification of this file is simply allowing the results JSON files to be kept and persisted in the result-exporter(below).
+:A modified version of the benchrun.py file that allows the results JSON files to be persisted in the result-exporter.
 
-`result-exporter/app.py` :Contains the exporter application, `requirements.txt` are the python library requirements and `Dockerfile` contains the Docker commands to run the exporter container. There is *no need to build* the image; the folder is only included for reference.
+`result-exporter/app.py`
+: Contains the exporter application. The `requirements.txt` file outlines the python library requirements and the `Dockerfile` contains the Docker commands to run the exporter container. There is *no need to build* the image; the folder is only included for reference.
 
-`result-exporter/` : This directory contains files required to run the results exporter. The exporter's role is to expose the throughput metric over HTTP (in contrast to the original websocket implementation in the results service) so that it can be collected by the jsonpath metric collector.
+`result-exporter/` : This directory contains the files required to run the results exporter. The exporter exposes the throughput metric over HTTP (in contrast to the original websocket implementation in the results service) so that it can be collected by the jsonpath metric collector.
 
-`result-exporter/app.py` : Contains the exporter application, `requirements.txt` are the python library requirements and `Dockerfile` contains the Docker commands to run the exporter container. There is *no need to build* the image; the folder is only included for reference.
+`result-exporter/app.py` : Contains the exporter application. The `requirements.txt` file outlines the python library requirements and `Dockerfile` contains the Docker commands to run the exporter container. There is *no need to build* the image; the folder is only included for reference.
 
 ## Experiment Lifecycle
 
-For the experiment, the pods and service for the result-exporter will persist throughout the entire experiment.
+Throughout the entire lifecycle of the experiment, the pods and service for the result-exporter will persist.  
 
-For every trial, several pods will come up, as needed for the testing.
+For each trial, the following pods will come up:
+
+TODO: fix the filenames
 
 1. `to create the experiment asset. Also has an init container to wait for all pieces to spin up.`
 2. `mongo-db itself, spun up by Helm`
