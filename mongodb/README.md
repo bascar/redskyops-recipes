@@ -58,3 +58,7 @@ TODO: fix the filenames
 4. `trial delete pod to cleanup after the trial`
 
 For more information on running, monitoring and maintaining experiments, please refer to our [quickstart](https://redskyops.dev/docs/quickstart/) and [experiment lifecycle](https://redskyops.dev/docs/lifecycle/) documentation.
+
+## How to run this experiment
+
+`kustomize build | kubectl apply -f -`  
