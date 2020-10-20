@@ -37,12 +37,7 @@ The resources for this tutorial can be found in the [`/mongodb`](https://github.
 `mongo-perf/benchrun.py`
 :A modified version of the benchrun.py file that allows the results JSON files to be persisted in the result-exporter.
 
-`result-exporter/app.py`
-: Contains the exporter application. The `requirements.txt` file outlines the python library requirements and the `Dockerfile` contains the Docker commands to run the exporter container. There is *no need to build* the image; the folder is only included for reference.
-
-`result-exporter/` : This directory contains the files required to run the results exporter. The exporter exposes the throughput metric over HTTP (in contrast to the original websocket implementation in the results service) so that it can be collected by the jsonpath metric collector.
-
-`result-exporter/app.py` : Contains the exporter application. The `requirements.txt` file outlines the python library requirements and `Dockerfile` contains the Docker commands to run the exporter container. There is *no need to build* the image; the folder is only included for reference.
+`result-exporter/` : This directory contains the files required to run the results exporter. The exporter exposes the throughput metric over HTTP (in contrast to the original websocket implementation in the results service) so that it can be collected by the jsonpath metric collector. The `requirements.txt` file outlines the python library requirements and `Dockerfile` contains the Docker commands to run the exporter container. There is *no need to build* the image; the folder is only included for reference.
 
 ## Experiment Lifecycle
 
