@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
       - name: result-exporter
-        image: bascar/result-exporter:latest
+        image: gcr.io/redskyops/result-exporter-raw:latest
         env:
         - name: DB_HOST
           value: db

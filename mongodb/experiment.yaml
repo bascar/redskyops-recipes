@@ -1,7 +1,7 @@
 apiVersion: redskyops.dev/v1alpha1
 kind: Experiment
 metadata:
-  name: mongodb-exp-bascar
+  name: mongodb-experiment
 spec:
   optimization:
   - name: "experimentBudget"
