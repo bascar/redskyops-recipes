@@ -23,21 +23,24 @@ The resources for this tutorial can be found in the [`/mongodb`](https://github.
 : The actual experiment object manifest; this includes the definition of the experiment itself (in terms of assignable parameters and observable metrics) and the instructions for carrying out the experiment (in terms of load generation and metric queries). Here is where you may change parameter ranges and the experiment name (to avoid experiment name conflicts in the cluster).
 
 `kustomization.yaml`
-: The input to Kustomize used to build the Kubernetes object manifests for this example.  
+: The input to Kustomize used to build the Kubernetes object manifests for this example. Should not need modification.
+
+`application folder`
+: holder the assets used by the experiment lifecycle
 
 `application/results-exporter.yaml`
 : The manifest for the results exporter (a utility container that holds results for the experimant loop).
 
-`service-account.yaml`
+`application/service-account.yaml`
 : The manifest for the service account used by the controller to create and manage all of the assets in the experiment. This is applied just once to create the kubernetes user, role, and rolebinding.
 
-`mongo-perf/`
+`docker-containers/mongo-perf/`
 : This directory contains files required to run the lightly modified mongo-perf container. There is *no need to build* the image; the folder is only included for reference.  
 
-`mongo-perf/benchrun.py`
+`docker-containers/mongo-perf/benchrun.py`
 :A modified version of the benchrun.py file that allows the results JSON files to be persisted in the result-exporter.
 
-`result-exporter/` : This directory contains the files required to run the results exporter. The exporter exposes the throughput metric over HTTP (in contrast to the original websocket implementation in the results service) so that it can be collected by the jsonpath metric collector. The `requirements.txt` file outlines the python library requirements and `Dockerfile` contains the Docker commands to run the exporter container. There is *no need to build* the image; the folder is only included for reference.
+`docker-containers/result-exporter/` : This directory contains the files required to run the results exporter. The exporter exposes the throughput metric over HTTP (in contrast to the original websocket implementation in the results service) so that it can be collected by the jsonpath metric collector. The `requirements.txt` file outlines the python library requirements and `Dockerfile` contains the Docker commands to run the exporter container. There is *no need to build* the image; the folder is only included for reference.
 
 ## Experiment Lifecycle
 
