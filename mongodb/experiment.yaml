@@ -60,7 +60,7 @@ spec:
               activeDeadlineSeconds: 1800
               containers:
               - name: mongo-perf
-                image: bascar/mongo-perf:latest
+                image: gcr.io/redskyops/mongo-perf:latest
                 command: ["/usr/bin/python", "benchrun.py" ]
                 args:
                     - "-f"
@@ -72,6 +72,6 @@ spec:
                     - "--host"
                     - "mongodb-experiment"
               initContainers:
-              - name: my-init-container-1
+              - name: init-container-30-seconds
                 image: busybox
-                command: ['sh', '-c', 'echo my-init-container-1 start; sleep 30;echo my-init-container-1 complete;']
+                command: ['sh', '-c', 'echo init-container start; sleep 30;echo init-container complete;']
